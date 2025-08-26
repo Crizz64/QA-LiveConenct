@@ -50,3 +50,41 @@ th {
 #report-container {
     /* Report will be generated here */
 }
+
+.grid-modulos {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.tarjeta {
+    background-color: #f7f7f7;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.icono {
+    width: 50px;
+    height: 50px;
+    background-color: #333;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+.tarjeta h3 {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.grid-modulos {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.tarjeta {
+    margin: 20px;
+    width: calc(33.33% - 20px);
+}
