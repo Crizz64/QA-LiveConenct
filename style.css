@@ -1,9 +1,18 @@
+:root {
+    --color-primario: #333;
+    --color-secundario: #4CAF50;
+    --tamaño-fuente: 16px;
+    --color-fondo: #f7f7f7;
+    --color-borde: #ddd;
+}
+
 body {
     font-family: Arial, sans-serif;
+    font-size: var(--tamaño-fuente);
 }
 
 header {
-    background-color: #333;
+    background-color: var(--color-primario);
     color: #fff;
     padding: 1em;
     text-align: center;
@@ -17,7 +26,7 @@ main {
 }
 
 section {
-    background-color: #f7f7f7;
+    background-color: var(--color-fondo);
     padding: 1em;
     margin-bottom: 1em;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -33,22 +42,14 @@ table {
 }
 
 th, td {
-    border: 1px solid #ddd;
+    border: 1px solid var(--color-borde);
     padding: 0.5em;
     text-align: left;
 }
 
 th {
-    background-color: #333;
+    background-color: var(--color-primario);
     color: #fff;
-}
-
-#test-results-body {
-    /* Test results will be populated here */
-}
-
-#report-container {
-    /* Report will be generated here */
 }
 
 .grid-modulos {
@@ -58,35 +59,24 @@ th {
 }
 
 .tarjeta {
-    background-color: #f7f7f7;
+    background-color: var(--color-fondo);
     padding: 20px;
-    border: 1px solid #ddd;
+    border: 1px solid var(--color-borde);
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.icono {
+.tarjeta__icono {
     width: 50px;
     height: 50px;
-    background-color: #333;
+    background-color: var(--color-primario);
     border-radius: 50%;
     margin-bottom: 10px;
 }
 
-.tarjeta h3 {
+.tarjeta__titulo {
     font-weight: bold;
     margin-bottom: 10px;
-}
-
-.grid-modulos {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-
-.tarjeta {
-    margin: 20px;
-    width: calc(33.33% - 20px);
 }
 
 #comentarios-form {
@@ -97,11 +87,11 @@ th {
     width: 100%;
     height: 100px;
     padding: 10px;
-    border: 1px solid #ccc;
+    border: 1px solid var(--color-borde);
 }
 
 #guardar-comentarios {
-    background-color: #4CAF50;
+    background-color: var(--color-secundario);
     color: #fff;
     padding: 10px 20px;
     border: none;
@@ -112,6 +102,18 @@ th {
 #comentarios-almacenados {
     margin-top: 20px;
     padding: 10px;
-    border: 1px solid #ccc;
+    border: 1px solid var(--color-borde);
     background-color: #f9f9f9;
+}
+
+@media (max-width: 768px) {
+    .grid-modulos {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    }
+}
+
+@media (max-width: 480px) {
+    .grid-modulos {
+        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    }
 }

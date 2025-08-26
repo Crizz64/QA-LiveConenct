@@ -1,65 +1,69 @@
 // Populate test results table
 const testResultsBody = document.getElementById('test-results-body');
-// Assume you have test results data in an array
-const testResults = [
-    { module: 'User Authentication', date: '2023-02-15', result: 'Pass' },
-    { module: 'Data Integration', date: '2023-02-16', result: 'Fail' },
-    // ...
-];
+if (testResultsBody) {
+    const testResults = [
+        { module: 'User Authentication', date: '2023-02-15', result: 'Pass' },
+        { module: 'Data Integration', date: '2023-02-16', result: 'Fail' },
+        // ...
+    ];
 
-testResults.forEach((result) => {
-    const row = document.createElement('tr');
-    row.innerHTML = `
-        <td>${result.module}</td>
-        <td>${result.date}</td>
-        <td>${result.result}</td>
-    `;
-    testResultsBody.appendChild(row);
-});
+    function crearFila(resultado) {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td>${resultado.module}</td>
+            <td>${resultado.date}</td>
+            <td>${resultado.result}</td>
+        `;
+        return row;
+    }
+
+    testResults.forEach((result) => {
+        testResultsBody.appendChild(crearFila(result));
+    });
+}
 
 // Generate report
 const generateReportButton = document.getElementById('generate-report');
 const reportContainer = document.getElementById('report-container');
-
-generateReportButton.addEventListener('click', () => {
-    // Assume you have a Python API to generate report
-    fetch('/generate-report')
-        .then((response) => response.text())
-        .then((report) => {
-            reportContainer.innerHTML = report;
-        })
-        .catch((error) => console.error(error));
-});
-
+if (generateReportButton && reportContainer) {
+    generateReportButton.addEventListener('click', () => {
+        fetch('/generate-report')
+            .then((response) => response.text())
+            .then((report) => {
+                reportContainer.innerHTML = report;
+            })
+            .catch((error) => {
+                reportContainer.innerHTML = 'Error al generar el informe';
+                console.error(error);
+            });
+    });
+}
 
 const comentariosForm = document.getElementById('comentarios-form');
 const comentariosTextarea = document.getElementById('comentarios-textarea');
 const guardarComentariosButton = document.getElementById('guardar-comentarios');
 const comentariosAlmacenadosDiv = document.getElementById('comentarios-almacenados');
-
-guardarComentariosButton.addEventListener('click', () => {
-    const comentarios = comentariosTextarea.value.trim();
-    if (comentarios !== '') {
-        // Almacenar comentarios en localStorage
-        const comentariosAlmacenados = localStorage.getItem('comentarios');
-        if (comentariosAlmacenados === null) {
-            localStorage.setItem('comentarios', comentarios);
-        } else {
-            localStorage.setItem('comentarios', comentariosAlmacenados + '\n' + comentarios);
+if (comentariosForm && comentariosTextarea && guardarComentariosButton && comentariosAlmacenadosDiv) {
+    guardarComentariosButton.addEventListener('click', () => {
+        const comentarios = comentariosTextarea.value.trim();
+        if (comentarios !== '') {
+            const comentariosAlmacenados = localStorage.getItem('comentarios');
+            if (comentariosAlmacenados === null) {
+                localStorage.setItem('comentarios', comentarios);
+            } else {
+                localStorage.setItem('comentarios', comentariosAlmacenados + '\n' + comentarios);
+            }
+            actualizarComentarios();
+            comentariosTextarea.value = '';
         }
-        // Actualizar la web
-        actualizarComentarios();
-        // Limpiar el textarea
-        comentariosTextarea.value = '';
-    }
-});
+    });
 
-function actualizarComentarios() {
-    const comentariosAlmacenados = localStorage.getItem('comentarios');
-    if (comentariosAlmacenados !== null) {
-        comentariosAlmacenadosDiv.innerText = comentariosAlmacenados;
+    function actualizarComentarios() {
+        const comentariosAlmacenados = localStorage.getItem('comentarios');
+        if (comentariosAlmacenados !== null) {
+            comentariosAlmacenadosDiv.innerText = comentariosAlmacenados;
+        }
     }
+
+    actualizarComentarios();
 }
-
-// Cargar comentarios almacenados al cargar la página
-actualizarComentarios();
