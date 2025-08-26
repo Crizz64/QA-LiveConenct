@@ -53,9 +53,21 @@ th {
 }
 
 .grid-modulos {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 20px;
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 20px;
+}
+
+@media (min-width: 768px) {
+  .grid-modulos {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid-modulos {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 .tarjeta {
@@ -104,18 +116,6 @@ th {
     padding: 10px;
     border: 1px solid var(--color-borde);
     background-color: #f9f9f9;
-}
-
-@media (max-width: 768px) {
-    .grid-modulos {
-        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    }
-}
-
-@media (max-width: 480px) {
-    .grid-modulos {
-        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-    }
 }
 
 table {
