@@ -117,3 +117,25 @@ th {
         grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
     }
 }
+
+table {
+  table-layout: fixed;
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th:nth-child(1), td:nth-child(1) {
+  width: 40%; /* Módulo */
+}
+
+th:nth-child(2), td:nth-child(2) {
+  width: 20%; /* Fecha */
+}
+
+th:nth-child(3), td:nth-child(3) {
+  width: 40%; /* Resultado */
+}
+
+td {
+  word-wrap: break-word;
+}
