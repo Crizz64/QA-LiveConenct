@@ -30,3 +30,36 @@ generateReportButton.addEventListener('click', () => {
         })
         .catch((error) => console.error(error));
 });
+
+
+const comentariosForm = document.getElementById('comentarios-form');
+const comentariosTextarea = document.getElementById('comentarios-textarea');
+const guardarComentariosButton = document.getElementById('guardar-comentarios');
+const comentariosAlmacenadosDiv = document.getElementById('comentarios-almacenados');
+
+guardarComentariosButton.addEventListener('click', () => {
+    const comentarios = comentariosTextarea.value.trim();
+    if (comentarios !== '') {
+        // Almacenar comentarios en localStorage
+        const comentariosAlmacenados = localStorage.getItem('comentarios');
+        if (comentariosAlmacenados === null) {
+            localStorage.setItem('comentarios', comentarios);
+        } else {
+            localStorage.setItem('comentarios', comentariosAlmacenados + '\n' + comentarios);
+        }
+        // Actualizar la web
+        actualizarComentarios();
+        // Limpiar el textarea
+        comentariosTextarea.value = '';
+    }
+});
+
+function actualizarComentarios() {
+    const comentariosAlmacenados = localStorage.getItem('comentarios');
+    if (comentariosAlmacenados !== null) {
+        comentariosAlmacenadosDiv.innerText = comentariosAlmacenados;
+    }
+}
+
+// Cargar comentarios almacenados al cargar la página
+actualizarComentarios();
