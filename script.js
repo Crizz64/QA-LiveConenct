@@ -2,8 +2,8 @@
 const testResultsBody = document.getElementById('test-results-body');
 if (testResultsBody) {
     const testResults = [
-        { module: 'User Authentication', date: '2023-02-15', result: 'Pass' },
-        { module: 'Data Integration', date: '2023-02-16', result: 'Fail' },
+        { module: 'User Authentication', date: '2025-08-26', result: 'Pending' },
+        { module: 'Data Integration', date: '2023-02-16', result: 'unfixed' },
         // ...
     ];
 
